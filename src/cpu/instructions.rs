@@ -147,4 +147,3 @@ pub enum Instruction {
     // Illegal/Undefined
     ILLEGAL,
 }
-
