@@ -17,10 +17,10 @@ macro_rules! instructions {
             }
         )*
 
-        pub const DISPATCH: [fn(&mut $crate::cpu::CPU) -> u8; 256] = {
-            let mut opcode_table = [invalid as fn(&mut $crate::cpu::CPU) -> u8; 256];
-            $(opcode_table[$opcode] = $mnemonic;)*
-            opcode_table
+        pub const OPCODE_TABLE: [fn(&mut $crate::cpu::CPU) -> u8; 256] = {
+            let mut table = [invalid as fn(&mut $crate::cpu::CPU) -> u8; 256];
+            $(table[$opcode] = $mnemonic;)*
+            table
         };
     };
 }

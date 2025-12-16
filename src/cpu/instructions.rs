@@ -2,7 +2,7 @@ use crate::instructions;
 
 instructions!(
     NOP(0x00, 1) => |_CPU| {
-        todo!()
+        println!("NOP");
     },
-    
+
 );

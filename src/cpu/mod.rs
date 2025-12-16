@@ -1,4 +1,4 @@
-use crate::cpu::{instructions::DISPATCH, registers::Registers};
+use crate::cpu::{instructions::OPCODE_TABLE, registers::Registers};
 
 pub mod instructions;
 mod macros;
@@ -15,8 +15,8 @@ impl CPU {
     }
 
     pub fn step(&mut self) -> u8 {
-        let opcode = 0x01 as u8;
-        let cycles = DISPATCH[opcode as usize](self);
-        cycles
+        let opcode = 0x00 as u8;
+        let cycles = self;
+        OPCODE_TABLE[opcode as usize](cycles)
     }
 }
