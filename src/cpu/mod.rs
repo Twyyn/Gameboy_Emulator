@@ -1,10 +1,22 @@
+use crate::cpu::{instructions::DISPATCH, registers::Registers};
+
 pub mod instructions;
-pub mod opcodes;
+mod macros;
 pub mod registers;
 
-use crate::cpu::registers::Register;
-
-#[allow(dead_code)]
 pub struct CPU {
-    pub registers: Register,
+    registers: Registers,
+}
+impl CPU {
+    pub fn new() -> Self {
+        Self {
+            registers: Registers::new(),
+        }
+    }
+
+    pub fn step(&mut self) -> u8 {
+        let opcode = 0x01 as u8;
+        let cycles = DISPATCH[opcode as usize](self);
+        cycles
+    }
 }

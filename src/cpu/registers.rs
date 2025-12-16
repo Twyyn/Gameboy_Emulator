@@ -9,8 +9,7 @@ bitflags! {
     }
 }
 #[derive(Debug)]
-#[allow(non_camel_case_types, non_snake_case, dead_code)]
-pub struct Register {
+pub struct Registers {
     pub SP: u16, // 16-Bit Stack Pointer
     pub PC: u16, // 16-Bit Program Counter
     /* ---------------- 8-Bit Registers ---------------- */
@@ -23,7 +22,7 @@ pub struct Register {
     pub H: u8,
     pub L: u8,
 }
-impl Default for Register {
+impl Default for Registers {
     fn default() -> Self {
         Self {
             SP: 0xFFFE,
@@ -39,8 +38,8 @@ impl Default for Register {
         }
     }
 }
-#[allow(non_snake_case, dead_code)]
-impl Register {
+
+impl Registers {
     pub fn new() -> Self {
         Self {
             ..Default::default()

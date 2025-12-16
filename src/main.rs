@@ -1,13 +1,6 @@
-mod cpu;
-mod memory;
-use crate::cpu::registers;
+use gameboy_emulator::cpu::CPU;
 
 fn main() {
-    let register = registers::Register::new();
-    println!("{:?}", register.AF());
-    println!("{:?}", register.BC());
-    println!("{:?}", register.DE());
-    println!("{:?}", register.HL());
-    println!("{:?}", register.Flags());
-    println!("{:?}", register.Z_Flag());
+    let mut cpu = CPU::new();
+    cpu.step();
 }
