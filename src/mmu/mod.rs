@@ -28,17 +28,17 @@ impl Memory {
     pub fn read(&self, addr: u16) -> u8 {
         match addr {
             /* Video RAM */
-            0x8000..0x9FFF => self.VRAM[addr as usize],
+            0x8000..0x9FFF => self.VRAM[(addr - 0x8000) as usize],
             /* Work RAM */
-            0xC000..=0xDFFF => self.WRAM[addr as usize],
+            0xC000..=0xDFFF => self.WRAM[(addr - 0xC000) as usize],
             /* Echo RAM */
             0xE000..=0xFDFF => self.WRAM[(addr - 0x2000) as usize],
             /* OAM RAM */
-            0xFE00..0xFE9F => self.OAM[addr as usize],
+            0xFE00..0xFE9F => self.OAM[(addr - 0xFE00) as usize],
             /* IO Registers */
-            0xFF00..=0xFF7F => self.IO[addr as usize],
+            0xFF00..=0xFF7F => self.IO[(addr - 0xFF00) as usize],
             /* High RAM */
-            0xFF80..0xFFFE => self.HRAM[addr as usize],
+            0xFF80..0xFFFE => self.HRAM[(addr - 0xFF80) as usize],
             /* IE Register */
             _ => 0xFF,
         }
