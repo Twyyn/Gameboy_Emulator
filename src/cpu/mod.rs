@@ -1,5 +1,8 @@
-use crate::cpu::{instructions::OPCODE_TABLE, registers::Registers};
+use crate::cpu::{
+    cb_instructions::CB_OPCODE_TABLE, instructions::OPCODE_TABLE, registers::Registers,
+};
 
+pub mod cb_instructions;
 pub mod instructions;
 mod macros;
 pub mod registers;
@@ -15,7 +18,7 @@ impl CPU {
     }
 
     pub fn step(&mut self) -> u8 {
-        let opcode = 0x00 as u8;
+        let opcode = 0x2D as u8;
         let cycles = self;
         OPCODE_TABLE[opcode as usize](cycles)
     }

@@ -1,7 +1,6 @@
-use crate::instructions;
+use crate::gb_instructions;
 
-instructions!(
-
+gb_instructions!(
     NOP(0x00, 4) => |_CPU| {},
 
     LD_BC_n16(0x01, 3) => |CPU| {
@@ -504,7 +503,7 @@ instructions!(
 
     },
 
-    LD_A__HL__(0x7E, 2) => |CPU| {
+    LD_A__HL_(0x7E, 2) => |CPU| {
 
     },
 
@@ -536,7 +535,7 @@ instructions!(
 
     },
 
-    ADD_A__HL__(0x86, 2) => |CPU| {
+    ADD_A__HL_(0x86, 2) => |CPU| {
 
     },
 
@@ -568,7 +567,7 @@ instructions!(
 
     },
 
-    ADC_A__HL__(0x8E, 2) => |CPU| {
+    ADC_A__HL_(0x8E, 2) => |CPU| {
 
     },
 
@@ -600,7 +599,7 @@ instructions!(
 
     },
 
-    SUB_A__HL__(0x96, 2) => |CPU| {
+    SUB_A__HL_(0x96, 2) => |CPU| {
 
     },
 
@@ -632,7 +631,7 @@ instructions!(
 
     },
 
-    SBC_A__HL__(0x9E, 2) => |CPU| {
+    SBC_A__HL_(0x9E, 2) => |CPU| {
 
     },
 
@@ -664,7 +663,7 @@ instructions!(
 
     },
 
-    AND_A__HL__(0xA6, 2) => |CPU| {
+    AND_A__HL_(0xA6, 2) => |CPU| {
 
     },
 
@@ -696,7 +695,7 @@ instructions!(
 
     },
 
-    XOR_A__HL__(0xAE, 2) => |CPU| {
+    XOR_A__HL_(0xAE, 2) => |CPU| {
 
     },
 
@@ -728,7 +727,7 @@ instructions!(
 
     },
 
-    OR_A__HL__(0xB6, 2) => |CPU| {
+    OR_A__HL_(0xB6, 2) => |CPU| {
 
     },
 
@@ -748,10 +747,6 @@ instructions!(
 
     },
 
-    CP_A_D(0xBA, 1) => |CPU| {
-
-    },
-
     CP_A_E(0xBB, 1) => |CPU| {
 
     },
@@ -764,11 +759,263 @@ instructions!(
 
     },
 
-    CP_A__HL__(0xBE, 1) => |CPU| {
+    CP_A__HL_(0xBE, 1) => |CPU| {
 
     },
 
     CP_A_A(0xBF, 1) => |CPU| {
+
+    },
+
+    RET_NZ(0xC0, 5/2) => |CPU| {
+
+    },
+
+    POP_BC(0xC1, 3) => |CPU| {
+
+    },
+
+    JP_NZ_a16(0xC2, 4/3) => |CPU| {
+
+    },
+
+    JP_a16(0xC3, 4) => |CPU| {
+
+    },
+
+    CALL_NZ_a16(0xC4, 6/3) => |CPU| {
+
+    },
+
+    PUSH_BC(0xC5, 4) => |CPU| {
+
+    },
+
+    ADD_A_n8(0xC6, 2) => |CPU| {
+
+    },
+
+    RST_00(0xC7, 4) => |CPU| {
+
+    },
+
+    RET_Z(0xC8, 5/2) => |CPU| {
+
+    },
+
+    RET(0xC9, 4) => |CPU| {
+
+    },
+
+    JP_Z_a16(0xCA, 4/3) => |CPU| {
+
+    },
+
+    PREFIX(0xCB, 1) => |CPU| {
+
+    },
+
+    CALL_Z_a16(0xCC, 6/3) => |CPU| {
+
+    },
+
+    CALL_a16(0xCD, 6) => |CPU| {
+
+    },
+
+    ADC_A_n8(0xCE, 2) => |CPU| {
+
+    },
+
+    RST_08(0xCF, 4) => |CPU| {
+
+    },
+
+    RET_NC(0xD0, 5/2) => |CPU| {
+
+    },
+
+    POP_DE(0xD1, 3) => |CPU| {
+
+    },
+
+    JP_NC_a16(0xD2, 4/3) => |CPU| {
+
+    },
+
+    ILLEGAL_D3(0xD3, 1) => |CPU| {
+
+    },
+
+    CALL_NC_a16(0xD4, 6/3) => |CPU| {
+
+    },
+
+    PUSH_DE(0xD5, 4) => |CPU| {
+
+    },
+
+    SUB_A_n8(0xD6, 2) => |CPU| {
+
+    },
+
+    RST_10(0xD7, 4) => |CPU| {
+
+    },
+
+    RET_C(0xD8, 5/2) => |CPU| {
+
+    },
+
+    RETI(0xD9, 4) => |CPU| {
+
+    },
+
+    JP_C_a16(0xDA, 4/3) => |CPU| {
+
+    },
+
+    ILLEGAL_D8(0xDB, 1) => |CPU| {
+
+    },
+
+    CALL_C_a16(0xDC, 6/3) => |CPU| {
+
+    },
+
+    SBC_A_n8(0xDE, 2) => |CPU| {
+
+    },
+
+    RST_18(0xDF, 4) => |CPU| {
+
+    },
+
+    LDH__a8__A(0xE0, 3) => |CPU| {
+
+    },
+
+    POP_HL(0xE1, 3) => |CPU| {
+
+    },
+
+    LDH__C__A(0xE2, 2) => |CPU| {
+
+    },
+
+    ILLEGAL_E3(0xE3, 1) => |CPU| {
+
+    },
+
+    ILLEGAL_E4(0xE4, 1) => |CPU| {
+
+    },
+
+    PUSH_HL(0xE5, 4) => |CPU| {
+
+    },
+
+    AND_A_n8(0xE6, 2) => |CPU| {
+
+    },
+
+    RST_20(0xE7, 4) => |CPU| {
+
+    },
+
+    ADD_SP_e8(0xE8, 4) => |CPU| {
+
+    },
+
+    JP_HL(0xE9, 1) => |CPU| {
+
+    },
+
+    LD__a16__A(0xEA, 4) => |CPU| {
+
+    },
+
+    ILLEGAL_EB(0xEB, 1) => |CPU| {
+
+    },
+
+    ILLEGAL_EC(0xEC, 1) => |CPU| {
+
+    },
+
+    ILLEGAL_ED(0xED, 1) => |CPU| {
+
+    },
+
+    XOR_A_n8(0xEE, 2) => |CPU| {
+
+    },
+
+    RST_28(0xEF, 4) => |CPU| {
+
+    },
+
+    LDH_A__a8_(0xF0, 3) => |CPU| {
+
+    },
+
+    POP_AF(0xF1, 3) => |CPU| {
+
+    },
+
+    LDH_A__C_(0xF2, 2) => |CPU| {
+
+    },
+
+    DI(0xF3, 1) => |CPU| {
+
+    },
+
+    ILLEGAL_F4(0xF4, 1) => |CPU| {
+
+    },
+
+    PUSH_AF(0xF5, 4) => |CPU| {
+
+    },
+
+    OR_A_n8(0xF6, 2) => |CPU| {
+
+    },
+
+    RST_30(0xF7, 4) => |CPU| {
+
+    },
+
+    LD_HL_SPe8(0xF8, 3) => |CPU| {
+
+    },
+
+    LD_SP_HL(0xF9, 2) => |CPU| {
+
+    },
+
+    LD_A__a16_(0xFA, 4) => |CPU| {
+
+    },
+
+    EI(0xFB, 1) => |CPU| {
+
+    },
+
+    ILLEGAL_FC(0xFC, 1) => |CPU| {
+
+    },
+
+    ILLEGAL_FD(0xFD, 1) => |CPU| {
+
+    },
+
+    CP_A_n8(0xFE, 2) => |CPU| {
+
+    },
+
+    RST_38(0xFF, 4) => |CPU| {
 
     },
 );
